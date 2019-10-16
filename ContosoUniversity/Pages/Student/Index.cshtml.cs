@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Models;
+using ContosoUniversity.Data;
 
 namespace ContosoUniversity.Pages.Student
 {
@@ -43,8 +44,8 @@ namespace ContosoUniversity.Pages.Student
 
             CurrentFilter = searchString;
 
-            IQueryable<ContosoUniversity.Models.Student> studentIQ = from s in _context.Student
-                                            select s;
+            IQueryable<ContosoUniversity.Models.Student> studentIQ = from s in _context.Students
+                                                                     select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 studentIQ = studentIQ.Where(s => s.LastName.Contains(searchString)

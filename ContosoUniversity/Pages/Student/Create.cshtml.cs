@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ContosoUniversity.Models;
+using ContosoUniversity.Data;
 
 namespace ContosoUniversity.Pages.Student
 {
@@ -40,7 +41,7 @@ namespace ContosoUniversity.Pages.Student
                 "student",   // Prefix for form value.
                 s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
             {
-                _context.Student.Add(emptyStudent);
+                _context.Students.Add(emptyStudent);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }

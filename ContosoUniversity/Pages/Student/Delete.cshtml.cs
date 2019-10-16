@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Models;
+using ContosoUniversity.Data;
 
 namespace ContosoUniversity.Pages.Student
 {
@@ -30,7 +31,7 @@ namespace ContosoUniversity.Pages.Student
                 return NotFound();
             }
 
-            Student = await _context.Student.AsNoTracking().FirstOrDefaultAsync(m => m.ID == id);
+            Student = await _context.Students.AsNoTracking().FirstOrDefaultAsync(m => m.ID == id);
 
             if (Student == null)
             {
@@ -50,7 +51,7 @@ namespace ContosoUniversity.Pages.Student
                 return NotFound();
             }
 
-            var student = await _context.Student
+            var student = await _context.Students
                             .AsNoTracking()
                             .FirstOrDefaultAsync(m => m.ID == id);
 
@@ -61,7 +62,7 @@ namespace ContosoUniversity.Pages.Student
 
             try
             {
-                _context.Student.Remove(student);
+                _context.Students.Remove(student);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
