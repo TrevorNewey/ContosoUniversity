@@ -1,19 +1,9 @@
 ﻿@page
 @model ContosoUniversity.Pages.Course.CreateModel
-
 @{
-    Layout = null;
+    ViewData["Title"] = "Create Course";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-
+<h2>Create</h2>
 <h4>Course</h4>
 <hr />
 <div class="row">
@@ -36,8 +26,12 @@
                 <span asp-validation-for="Course.Credits" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.DepartmentID" class="control-label"></label>
-                <select asp-for="Course.DepartmentID" class ="form-control" asp-items="ViewBag.DepartmentID"></select>
+                <label asp-for="Course.Department" class="control-label"></label>
+                <select asp-for="Course.DepartmentID" class="form-control"
+                        asp-items="@Model.DepartmentNameSL">
+                    <option value="">-- Select Department --</option>
+                </select>
+                <span asp-validation-for="Course.DepartmentID" class="text-danger" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -45,13 +39,9 @@
         </form>
     </div>
 </div>
-
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</body>
-</html>
